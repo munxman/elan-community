@@ -34,7 +34,7 @@ export default function Forum({ lang }: Props) {
   );
 
   return (
-    <div>
+    <div style={{ maxWidth: '100%', overflowX: 'hidden' }}>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20, flexWrap: 'wrap', gap: 12 }}>
         <div>
@@ -105,6 +105,7 @@ export default function Forum({ lang }: Props) {
         {filtered.map(post => (
           <div key={post.id} className="card card-hover" style={{
             borderColor: post.pinned ? 'rgba(200,167,126,0.25)' : 'var(--border)',
+            overflow: 'hidden',
           }}>
             <div className="forum-post-row" style={{ display: 'flex', gap: 14 }}>
               {/* Avatar */}
@@ -117,7 +118,7 @@ export default function Forum({ lang }: Props) {
                 {post.avatar}
               </div>
 
-              <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ flex: 1, minWidth: 0, overflow: 'hidden' }}>
                 {/* Meta row */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
                   {post.pinned && (
@@ -126,11 +127,11 @@ export default function Forum({ lang }: Props) {
                     </div>
                   )}
                   <span className={`badge ${categoryColors[post.category] ?? 'badge-gray'}`}>{post.category}</span>
-                  <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>by {post.author} · {post.time}</span>
+                  <span style={{ fontSize: 12, color: 'var(--text-muted)', wordBreak: 'break-word' as any }}>by {post.author} · {post.time}</span>
                 </div>
 
                 {/* Title */}
-                <h4 style={{ fontSize: 15, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 6, lineHeight: 1.4 }}>
+                <h4 style={{ fontSize: 15, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 6, lineHeight: 1.4, wordBreak: 'break-word' as any }}>
                   {post.title}
                 </h4>
 
