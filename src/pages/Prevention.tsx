@@ -73,7 +73,7 @@ export default function Prevention({ lang }: Props) {
               style={{
                 padding: '5px 12px', borderRadius: 20, border: '1px solid',
                 borderColor: activeCategory === cat ? 'var(--teal)' : 'var(--border)',
-                background: activeCategory === cat ? 'rgba(196,162,101,0.12)' : 'transparent',
+                background: activeCategory === cat ? 'rgba(200,167,126,0.12)' : 'transparent',
                 color: activeCategory === cat ? 'var(--teal-light)' : 'var(--text-muted)',
                 cursor: 'pointer', fontSize: 12, fontFamily: 'inherit',
               }}>
@@ -89,8 +89,8 @@ export default function Prevention({ lang }: Props) {
               style={{
                 display: 'flex', gap: 12, alignItems: 'flex-start',
                 padding: '10px 12px', borderRadius: 8,
-                background: item.checked ? 'rgba(196,162,101,0.06)' : 'var(--bg-primary)',
-                border: '1px solid', borderColor: item.checked ? 'rgba(196,162,101,0.2)' : 'var(--border)',
+                background: item.checked ? 'rgba(200,167,126,0.06)' : 'var(--bg-primary)',
+                border: '1px solid', borderColor: item.checked ? 'rgba(200,167,126,0.2)' : 'var(--border)',
                 cursor: 'pointer', transition: 'all 0.15s',
               }}>
               <div style={{ color: item.checked ? 'var(--teal)' : 'var(--text-muted)', flexShrink: 0, marginTop: 1 }}>
@@ -152,11 +152,11 @@ export default function Prevention({ lang }: Props) {
           {plateauStrategies.map((s, i) => (
             <div key={i} style={{
               border: '1px solid', borderRadius: 10, overflow: 'hidden',
-              borderColor: expandedStrategy === i ? 'rgba(196,162,101,0.3)' : 'var(--border)',
+              borderColor: expandedStrategy === i ? 'rgba(200,167,126,0.3)' : 'var(--border)',
             }}>
               <div onClick={() => setExpandedStrategy(expandedStrategy === i ? null : i)}
                 style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', cursor: 'pointer' }}>
-                <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(196,162,101,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: 'var(--teal-light)', flexShrink: 0 }}>
+                <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(200,167,126,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: 'var(--teal-light)', flexShrink: 0 }}>
                   {i + 1}
                 </div>
                 <span style={{ flex: 1, fontSize: 13, color: 'var(--text-primary)', fontWeight: 500 }}>{s.title}</span>
@@ -173,9 +173,9 @@ export default function Prevention({ lang }: Props) {
       </div>
 
       {/* Contact card */}
-      <div className="card" style={{ background: 'rgba(13,148,136,0.08)', borderColor: 'rgba(196,162,101,0.25)' }}>
+      <div className="card" style={{ background: 'rgba(13,148,136,0.08)', borderColor: 'rgba(200,167,126,0.25)' }}>
         <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-          <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(196,162,101,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(200,167,126,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             <Phone size={18} style={{ color: 'var(--teal-light)' }} />
           </div>
           <div style={{ flex: 1 }}>

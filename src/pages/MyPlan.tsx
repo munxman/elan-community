@@ -13,8 +13,8 @@ const tabs = [
 ];
 
 const dayColors: Record<string, string> = {
-  Monday: '#C4A265', Tuesday: '#C4A265', Wednesday: '#C4A265',
-  Thursday: '#C4A265', Friday: '#3b82f6', Saturday: '#C4A265', Sunday: '#64748b',
+  Monday: '#C8A77E', Tuesday: '#C8A77E', Wednesday: '#C8A77E',
+  Thursday: '#C8A77E', Friday: '#3b82f6', Saturday: '#C8A77E', Sunday: '#64748b',
 };
 
 const typeColors: Record<string, string> = {
@@ -39,9 +39,9 @@ export default function MyPlan({ lang }: Props) {
       </div>
 
       {/* Protocol header */}
-      <div className="card" style={{ marginBottom: 20, background: 'linear-gradient(135deg, rgba(13,148,136,0.15), rgba(196,162,101,0.05))', borderColor: 'rgba(196,162,101,0.3)' }}>
+      <div className="card" style={{ marginBottom: 20, background: 'linear-gradient(135deg, rgba(13,148,136,0.15), rgba(200,167,126,0.05))', borderColor: 'rgba(200,167,126,0.3)' }}>
         <div style={{ display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'wrap' }}>
-          <div style={{ width: 50, height: 50, borderRadius: 14, background: 'linear-gradient(135deg, #C4A265, #A88B4A)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 20, color: '#fff', flexShrink: 0, boxShadow: '0 0 20px rgba(196,162,101,0.3)' }}>É</div>
+          <div style={{ width: 50, height: 50, borderRadius: 14, background: 'linear-gradient(135deg, #C8A77E, #9D7C49)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 20, color: '#fff', flexShrink: 0, boxShadow: '0 0 20px rgba(200,167,126,0.3)' }}>É</div>
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 10, color: 'var(--teal-light)', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600, marginBottom: 3 }}>
               {l('Active Protocol', 'Aktiivne Protokoll', lang)}
@@ -56,7 +56,7 @@ export default function MyPlan({ lang }: Props) {
       </div>
 
       {/* Tabs */}
-      <div style={{ display: 'flex', gap: 4, background: 'var(--bg-secondary)', borderRadius: 10, padding: 4, marginBottom: 20, border: '1px solid var(--border)' }}>
+      <div className="myplan-tabs" style={{ display: 'flex', gap: 4, background: 'var(--bg-secondary)', borderRadius: 10, padding: 4, marginBottom: 20, border: '1px solid var(--border)' }}>
         {tabs.map(tab => (
           <button key={tab.id} onClick={() => setActiveTab(tab.id)}
             style={{
@@ -77,7 +77,7 @@ export default function MyPlan({ lang }: Props) {
       {/* Medication tab */}
       {activeTab === 'medication' && (
         <div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 16 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 14, marginBottom: 16 }}>
             {[
               { label: l('Medication', 'Ravim', lang), value: 'Tirzepatide (Mounjaro)', mono: false },
               { label: l('Current Dose', 'Praegune Annus', lang), value: '7.5 mg', mono: true },
@@ -105,8 +105,8 @@ export default function MyPlan({ lang }: Props) {
                 { dose: '10 mg', period: 'TBD — if plateau > 6 weeks', status: 'future' },
               ].map((step, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 12px', borderRadius: 8,
-                  background: step.status === 'current' ? 'rgba(196,162,101,0.08)' : step.status === 'done' ? 'transparent' : 'transparent',
-                  border: '1px solid', borderColor: step.status === 'current' ? 'rgba(196,162,101,0.3)' : 'var(--border)' }}>
+                  background: step.status === 'current' ? 'rgba(200,167,126,0.08)' : step.status === 'done' ? 'transparent' : 'transparent',
+                  border: '1px solid', borderColor: step.status === 'current' ? 'rgba(200,167,126,0.3)' : 'var(--border)' }}>
                   <div style={{ color: step.status === 'done' ? 'var(--emerald)' : step.status === 'current' ? 'var(--teal)' : 'var(--text-muted)', flexShrink: 0 }}>
                     {step.status === 'done' ? <CheckCircle2 size={16} /> : step.status === 'current' ? <Zap size={16} /> : <Circle size={16} />}
                   </div>
@@ -185,7 +185,7 @@ export default function MyPlan({ lang }: Props) {
               'Limit alcohol — it blocks fat oxidation for 12-24h and adds empty calories',
               'Don\'t fear fats. Olive oil, nuts, avocado, and fatty fish are your allies.'].map((p, i) => (
               <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 10 }}>
-                <div style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(196,162,101,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, color: 'var(--teal-light)', flexShrink: 0 }}>{i + 1}</div>
+                <div style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(200,167,126,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, color: 'var(--teal-light)', flexShrink: 0 }}>{i + 1}</div>
                 <p style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.6 }}>{p}</p>
               </div>
             ))}
@@ -196,7 +196,7 @@ export default function MyPlan({ lang }: Props) {
       {/* Training tab */}
       {activeTab === 'training' && (
         <div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 16 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 14, marginBottom: 16 }}>
             <div className="card">
               <div className="label">{l('Daily Steps', 'Päevasammud', lang)}</div>
               <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--teal-light)', marginTop: 4 }}>8,000–10,000</div>
@@ -215,7 +215,7 @@ export default function MyPlan({ lang }: Props) {
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {myPlan.training.weeklySchedule.map((session, i) => (
-                <div key={i} style={{
+                <div key={i} className="training-session" style={{
                   display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px',
                   borderRadius: 10, background: 'var(--bg-primary)', border: '1px solid var(--border)',
                 }}>
@@ -251,10 +251,10 @@ export default function MyPlan({ lang }: Props) {
                 <div key={i} style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
                   <div style={{
                     width: 40, height: 40, borderRadius: '50%', flexShrink: 0,
-                    background: m.done ? 'linear-gradient(135deg, #C4A265, #A88B4A)' : 'var(--bg-secondary)',
+                    background: m.done ? 'linear-gradient(135deg, #C8A77E, #9D7C49)' : 'var(--bg-secondary)',
                     border: `2px solid ${m.done ? 'var(--teal)' : 'var(--border)'}`,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    zIndex: 1, boxShadow: m.done ? '0 0 10px rgba(196,162,101,0.3)' : 'none',
+                    zIndex: 1, boxShadow: m.done ? '0 0 10px rgba(200,167,126,0.3)' : 'none',
                   }}>
                     {m.done
                       ? <CheckCircle2 size={16} style={{ color: '#fff' }} />

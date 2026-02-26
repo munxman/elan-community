@@ -73,11 +73,11 @@ export default function Tracker({ lang }: Props) {
 
       {/* Log form */}
       {showForm && (
-        <div className="card" style={{ marginBottom: 20, borderColor: 'rgba(196,162,101,0.3)' }}>
+        <div className="card" style={{ marginBottom: 20, borderColor: 'rgba(200,167,126,0.3)' }}>
           <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 16 }}>
             {l('New Entry', 'Uus Sissekanne', lang)}
           </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16 }}>
             <div className="form-group">
               <label className="form-label">{l('Date of injection', 'Süsti kuupäev', lang)}</label>
               <input type="date" className="form-input" value={form.date}
@@ -103,7 +103,7 @@ export default function Tracker({ lang }: Props) {
                     display: 'flex', alignItems: 'center', gap: 6,
                     padding: '8px 16px', borderRadius: 8, border: '1px solid',
                     borderColor: form.medicationTaken === val ? 'var(--teal)' : 'var(--border)',
-                    background: form.medicationTaken === val ? 'rgba(196,162,101,0.12)' : 'transparent',
+                    background: form.medicationTaken === val ? 'rgba(200,167,126,0.12)' : 'transparent',
                     color: form.medicationTaken === val ? 'var(--teal-light)' : 'var(--text-muted)',
                     cursor: 'pointer', fontSize: 13, fontFamily: 'inherit',
                   }}>
@@ -122,7 +122,7 @@ export default function Tracker({ lang }: Props) {
                   style={{
                     padding: '6px 12px', borderRadius: 20, border: '1px solid',
                     borderColor: form.sideEffects.includes(se) ? 'var(--teal)' : 'var(--border)',
-                    background: form.sideEffects.includes(se) ? 'rgba(196,162,101,0.12)' : 'transparent',
+                    background: form.sideEffects.includes(se) ? 'rgba(200,167,126,0.12)' : 'transparent',
                     color: form.sideEffects.includes(se) ? 'var(--teal-light)' : 'var(--text-muted)',
                     cursor: 'pointer', fontSize: 12, fontFamily: 'inherit',
                   }}>
@@ -132,7 +132,7 @@ export default function Tracker({ lang }: Props) {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16 }}>
             <div className="form-group">
               <label className="form-label">
                 {l('Mood', 'Meeleolu', lang)}: <b style={{ color: 'var(--teal-light)' }}>{getMoodLabel(form.mood)}</b>
@@ -180,8 +180,8 @@ export default function Tracker({ lang }: Props) {
             <YAxis domain={[0, 10]} tick={{ fontSize: 10, fill: 'var(--text-muted)' }} axisLine={false} tickLine={false} />
             <Tooltip contentStyle={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 8, fontSize: 12 }} />
             <Legend wrapperStyle={{ fontSize: 12, color: 'var(--text-muted)' }} />
-            <Bar dataKey="mood" fill="#C4A265" radius={[4, 4, 0, 0]} name="Mood" />
-            <Bar dataKey="energy" fill="#C4A265" radius={[4, 4, 0, 0]} name="Energy" />
+            <Bar dataKey="mood" fill="#C8A77E" radius={[4, 4, 0, 0]} name="Mood" />
+            <Bar dataKey="energy" fill="#C8A77E" radius={[4, 4, 0, 0]} name="Energy" />
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -199,7 +199,7 @@ export default function Tracker({ lang }: Props) {
                 {/* Status icon */}
                 <div style={{
                   width: 40, height: 40, borderRadius: 10, flexShrink: 0,
-                  background: log.medicationTaken ? 'rgba(196,162,101,0.12)' : 'rgba(239,68,68,0.12)',
+                  background: log.medicationTaken ? 'rgba(200,167,126,0.12)' : 'rgba(239,68,68,0.12)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}>
                   {log.medicationTaken

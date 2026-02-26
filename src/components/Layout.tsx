@@ -58,7 +58,7 @@ export default function Layout({ children, activePage, onNavigate, lang, onLangT
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <div style={{
               width: 32, height: 32, borderRadius: '50%',
-              background: 'linear-gradient(135deg, #A88B4A, #A88B4A)',
+              background: 'linear-gradient(135deg, #9D7C49, #9D7C49)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: 12, fontWeight: 700, color: '#fff', flexShrink: 0
             }}>MT</div>
@@ -84,7 +84,7 @@ export default function Layout({ children, activePage, onNavigate, lang, onLangT
                   display: 'flex', alignItems: 'center', gap: 10,
                   width: '100%', padding: '10px 12px',
                   borderRadius: 8, border: 'none',
-                  background: active ? 'rgba(196,162,101,0.12)' : 'transparent',
+                  background: active ? 'rgba(200,167,126,0.12)' : 'transparent',
                   color: active ? 'var(--teal-light)' : 'var(--text-secondary)',
                   fontSize: 13, fontWeight: active ? 600 : 400,
                   cursor: 'pointer', textAlign: 'left',
@@ -163,7 +163,7 @@ export default function Layout({ children, activePage, onNavigate, lang, onLangT
             </button>
             <div style={{
               width: 32, height: 32, borderRadius: '50%',
-              background: 'linear-gradient(135deg, #A88B4A, #A88B4A)',
+              background: 'linear-gradient(135deg, #9D7C49, #9D7C49)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: 12, fontWeight: 700, color: '#fff'
             }}>MT</div>
@@ -182,7 +182,20 @@ export default function Layout({ children, activePage, onNavigate, lang, onLangT
           .sidebar.open { transform: translateX(0) !important; }
           .main-content { margin-left: 0 !important; }
           .mobile-menu-btn { display: flex !important; }
-          main { padding: 16px !important; }
+          main { padding: 12px !important; }
+        }
+        @media (max-width: 480px) {
+          /* MyPlan tab bar: hide text, show icons only */
+          .myplan-tabs { gap: 2px !important; }
+          .myplan-tabs button span { display: none !important; }
+          .myplan-tabs button { padding: 9px 12px !important; }
+          /* MyPlan training schedule: stack vertically */
+          .training-session { flex-wrap: wrap !important; gap: 6px !important; padding: 10px !important; }
+          .training-session .badge { margin-left: auto; }
+          /* Forum post cards: smaller avatar */
+          .forum-post-row { gap: 10px !important; }
+          .forum-post-row .forum-avatar { width: 32px !important; height: 32px !important; font-size: 10px !important; }
+          .forum-actions { gap: 10px !important; }
         }
       `}</style>
     </div>

@@ -42,12 +42,12 @@ export default function Dashboard({ lang }: Props) {
     <div>
       {/* Welcome banner */}
       <div style={{
-        background: 'linear-gradient(135deg, rgba(13,148,136,0.2) 0%, rgba(196,162,101,0.08) 100%)',
-        border: '1px solid rgba(196,162,101,0.25)',
+        background: 'linear-gradient(135deg, rgba(13,148,136,0.2) 0%, rgba(200,167,126,0.08) 100%)',
+        border: '1px solid rgba(200,167,126,0.25)',
         borderRadius: 'var(--radius)',
         padding: '20px 24px',
         marginBottom: 24,
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16,
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap',
       }}>
         <div>
           <div style={{ fontSize: 12, color: 'var(--teal-light)', fontWeight: 600, letterSpacing: '0.05em', marginBottom: 6 }}>
@@ -61,9 +61,8 @@ export default function Dashboard({ lang }: Props) {
           </p>
         </div>
         <div style={{
-          background: 'rgba(196,162,101,0.1)', border: '1px solid rgba(196,162,101,0.2)',
-          borderRadius: 12, padding: '12px 20px', textAlign: 'center', flexShrink: 0,
-          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4
+          background: 'rgba(200,167,126,0.1)', border: '1px solid rgba(200,167,126,0.2)',
+          borderRadius: 12, padding: '12px 20px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4
         }}>
           <Flame size={20} style={{ color: 'var(--teal-light)' }} />
           <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--teal-light)', lineHeight: 1 }}>22</div>
@@ -74,7 +73,7 @@ export default function Dashboard({ lang }: Props) {
       </div>
 
       {/* KPI cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 16, marginBottom: 24 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 16, marginBottom: 24 }}>
         {[
           { label: l('Current Weight', 'Praegune Kaal', lang), value: `${patient.currentWeight} kg`, sub: `BMI ${bmi}`, icon: <TrendingDown size={18} />, color: 'var(--teal)' },
           { label: l('Total Lost', 'Kaotatud Kokku', lang), value: `−${patient.totalLost} kg`, sub: `${patient.percentLost}% of start weight`, icon: <Award size={18} />, color: 'var(--emerald)' },
@@ -98,7 +97,7 @@ export default function Dashboard({ lang }: Props) {
         ))}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 20, marginBottom: 20 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20, marginBottom: 20 }}>
         {/* Weight chart */}
         <div className="card">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
@@ -113,7 +112,7 @@ export default function Dashboard({ lang }: Props) {
               <XAxis dataKey="date" tick={{ fontSize: 10, fill: 'var(--text-muted)' }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 10, fill: 'var(--text-muted)' }} axisLine={false} tickLine={false} domain={[65, 110]} unit=" kg" width={55} />
               <Tooltip content={<CustomTooltip />} />
-              <ReferenceLine y={patient.goalWeight} stroke="rgba(196,162,101,0.4)" strokeDasharray="5 5" label={{ value: 'Goal', fill: 'var(--emerald)', fontSize: 10, position: 'right' }} />
+              <ReferenceLine y={patient.goalWeight} stroke="rgba(200,167,126,0.4)" strokeDasharray="5 5" label={{ value: 'Goal', fill: 'var(--emerald)', fontSize: 10, position: 'right' }} />
               <Line type="monotone" dataKey="weight" stroke="var(--teal)" strokeWidth={2.5} dot={{ fill: 'var(--teal)', r: 3, strokeWidth: 0 }} activeDot={{ r: 5, fill: 'var(--teal-light)' }} />
             </LineChart>
           </ResponsiveContainer>
@@ -136,7 +135,7 @@ export default function Dashboard({ lang }: Props) {
         {/* Right column */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           {/* Medication status */}
-          <div className="card" style={{ borderColor: 'rgba(196,162,101,0.25)', background: 'rgba(13,148,136,0.08)' }}>
+          <div className="card" style={{ borderColor: 'rgba(200,167,126,0.25)', background: 'rgba(13,148,136,0.08)' }}>
             <div className="label" style={{ marginBottom: 10 }}><Pill size={12} style={{ display: 'inline', marginRight: 4 }} />{l('Medication', 'Ravim', lang)}</div>
             <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 3 }}>Tirzepatide</div>
             <div style={{ fontSize: 13, color: 'var(--teal-light)', fontWeight: 600, marginBottom: 10 }}>7.5 mg · Weekly</div>
@@ -189,7 +188,7 @@ export default function Dashboard({ lang }: Props) {
       {/* Quick actions */}
       <div className="card">
         <h3 className="section-title">{l('Quick Actions', 'Kiired Toimingud', lang)}</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 12 }}>
           {[
             { icon: <CheckCircle2 size={16} />, text: l('Log this week\'s injection', 'Märgi selle nädala süst', lang), badge: 'Due Friday', badgeClass: 'badge-amber' },
             { icon: <TrendingDown size={16} />, text: l('Log today\'s weight', 'Märgi tänane kaal', lang), badge: 'Daily', badgeClass: 'badge-teal' },

@@ -51,7 +51,7 @@ export default function Forum({ lang }: Props) {
       </div>
 
       {/* Community stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14, marginBottom: 20 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 14, marginBottom: 20 }}>
         {[
           { value: '148', label: l('Members', 'Liiget', lang) },
           { value: '94%', label: l('Active this month', 'Aktiivsed sel kuul', lang) },
@@ -67,7 +67,7 @@ export default function Forum({ lang }: Props) {
 
       {/* Search + filters */}
       <div style={{ display: 'flex', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
-        <div style={{ position: 'relative', flex: 1, minWidth: 200 }}>
+        <div style={{ position: 'relative', flex: 1, minWidth: 0 }}>
           <Search size={14} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
           <input
             type="text"
@@ -90,7 +90,7 @@ export default function Forum({ lang }: Props) {
             style={{
               padding: '6px 14px', borderRadius: 20, border: '1px solid',
               borderColor: activeCategory === cat ? 'var(--teal)' : 'var(--border)',
-              background: activeCategory === cat ? 'rgba(196,162,101,0.12)' : 'transparent',
+              background: activeCategory === cat ? 'rgba(200,167,126,0.12)' : 'transparent',
               color: activeCategory === cat ? 'var(--teal-light)' : 'var(--text-muted)',
               cursor: 'pointer', fontSize: 12, fontFamily: 'inherit', whiteSpace: 'nowrap',
               transition: 'all 0.15s',
@@ -104,11 +104,11 @@ export default function Forum({ lang }: Props) {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         {filtered.map(post => (
           <div key={post.id} className="card card-hover" style={{
-            borderColor: post.pinned ? 'rgba(196,162,101,0.25)' : 'var(--border)',
+            borderColor: post.pinned ? 'rgba(200,167,126,0.25)' : 'var(--border)',
           }}>
-            <div style={{ display: 'flex', gap: 14 }}>
+            <div className="forum-post-row" style={{ display: 'flex', gap: 14 }}>
               {/* Avatar */}
-              <div style={{
+              <div className="forum-avatar" style={{
                 width: 40, height: 40, borderRadius: '50%', flexShrink: 0,
                 background: 'linear-gradient(135deg, rgba(13,148,136,0.6), rgba(8,145,178,0.6))',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -141,7 +141,7 @@ export default function Forum({ lang }: Props) {
                 </p>
 
                 {/* Actions row */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                <div className="forum-actions" style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                   <button onClick={e => { e.stopPropagation(); toggleLike(post.id); }}
                     style={{ display: 'flex', alignItems: 'center', gap: 5, background: 'none', border: 'none', cursor: 'pointer', padding: 0,
                       color: liked.has(post.id) ? '#f87171' : 'var(--text-muted)', fontSize: 12, fontFamily: 'inherit', transition: 'color 0.15s' }}>

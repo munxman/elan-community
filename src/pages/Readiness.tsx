@@ -126,7 +126,7 @@ const getRecommendation = (score: number) => {
   return {
     level: 'ready',
     label: 'Strong Readiness',
-    color: '#C4A265',
+    color: '#C8A77E',
     badgeClass: 'badge-green',
     message: 'Excellent work. Your score suggests strong foundations for a supervised discontinuation. This doesn\'t mean it\'s definitely the right time — your doctor will evaluate full clinical context — but you\'re well-positioned for a conversation.',
     actions: ['Schedule a discontinuation planning appointment', 'Prepare a post-medication monitoring plan', 'Review maintenance protocol', 'Discuss relapse warning signs with your team'],
@@ -213,7 +213,7 @@ export default function Readiness({ lang }: Props) {
 
           <div className="card" style={{ marginBottom: 16 }}>
             <div style={{ display: 'flex', gap: 12, marginBottom: 20 }}>
-              <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(196,162,101,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <div style={{ width: 40, height: 40, borderRadius: 10, background: 'rgba(200,167,126,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 <Brain size={18} style={{ color: 'var(--teal-light)' }} />
               </div>
               <div>
@@ -237,7 +237,7 @@ export default function Readiness({ lang }: Props) {
                       display: 'flex', alignItems: 'center', gap: 12,
                       padding: '14px 16px', borderRadius: 10, border: '1px solid',
                       borderColor: selected ? 'var(--teal)' : 'var(--border)',
-                      background: selected ? 'rgba(196,162,101,0.1)' : 'var(--bg-primary)',
+                      background: selected ? 'rgba(200,167,126,0.1)' : 'var(--bg-primary)',
                       cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit',
                       transition: 'all 0.15s',
                     }}
@@ -343,7 +343,7 @@ export default function Readiness({ lang }: Props) {
               {questions.map(q => {
                 const score = answers[q.id] ?? 0;
                 const pct = (score / q.maxPoints) * 100;
-                const color = pct < 40 ? '#ef4444' : pct < 70 ? '#f59e0b' : '#C4A265';
+                const color = pct < 40 ? '#ef4444' : pct < 70 ? '#f59e0b' : '#C8A77E';
                 return (
                   <div key={q.id}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, marginBottom: 4 }}>
