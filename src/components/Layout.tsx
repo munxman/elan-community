@@ -192,10 +192,13 @@ export default function Layout({ children, activePage, onNavigate, lang, onLangT
           /* MyPlan training schedule: stack vertically */
           .training-session { flex-wrap: wrap !important; gap: 6px !important; padding: 10px !important; }
           .training-session .badge { margin-left: auto; }
-          /* Forum post cards: smaller avatar */
-          .forum-post-row { gap: 10px !important; }
-          .forum-post-row .forum-avatar { width: 32px !important; height: 32px !important; font-size: 10px !important; }
-          .forum-actions { gap: 10px !important; }
+          /* Forum post cards: smaller avatar, prevent overflow */
+          .forum-post-row { gap: 8px !important; }
+          .forum-post-row .forum-avatar { width: 28px !important; height: 28px !important; font-size: 9px !important; }
+          .forum-actions { gap: 8px !important; flex-wrap: wrap !important; }
+          /* Category pills: smaller on mobile */
+          .forum-categories { gap: 4px !important; }
+          .forum-categories button { padding: 5px 10px !important; font-size: 11px !important; }
         }
       `}</style>
     </div>

@@ -51,7 +51,7 @@ export default function Forum({ lang }: Props) {
       </div>
 
       {/* Community stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 14, marginBottom: 20 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 10, marginBottom: 20 }}>
         {[
           { value: '148', label: l('Members', 'Liiget', lang) },
           { value: '94%', label: l('Active this month', 'Aktiivsed sel kuul', lang) },
@@ -84,7 +84,7 @@ export default function Forum({ lang }: Props) {
       </div>
 
       {/* Category tabs */}
-      <div style={{ display: 'flex', gap: 8, marginBottom: 20, overflowX: 'auto', paddingBottom: 4 }}>
+      <div className="forum-categories" style={{ display: 'flex', gap: 8, marginBottom: 20, overflowX: 'auto', paddingBottom: 4 }}>
         {categories.map(cat => (
           <button key={cat} onClick={() => setActiveCategory(cat)}
             style={{
