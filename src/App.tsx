@@ -6,6 +6,7 @@ import Readiness from './pages/Readiness'
 import Prevention from './pages/Prevention'
 import Forum from './pages/Forum'
 import MyPlan from './pages/MyPlan'
+import WellnessScore from './pages/WellnessScore'
 import './index.css'
 
 type Lang = 'en' | 'et'
@@ -22,6 +23,7 @@ function App() {
       case 'prevention': return <Prevention lang={lang} />
       case 'forum': return <Forum lang={lang} />
       case 'plan': return <MyPlan lang={lang} />
+      case 'wellness': return <WellnessScore lang={lang} />
       default: return <Dashboard lang={lang} />
     }
   }

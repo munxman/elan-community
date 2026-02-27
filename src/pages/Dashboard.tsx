@@ -6,12 +6,111 @@ import {
 } from 'recharts';
 import {
   TrendingDown, Calendar, Pill, Target, Award,
-  Clock, ChevronRight, AlertCircle, CheckCircle2, Flame
+  Clock, ChevronRight, AlertCircle, CheckCircle2, Flame, Send, Sparkles
 } from 'lucide-react';
 
 interface Props { lang: 'en' | 'et' }
 
 const l = (en: string, et: string, lang: 'en' | 'et') => lang === 'en' ? en : et;
+
+const CHECKIN_STORAGE = 'elan-daily-checkin';
+
+interface CheckinData {
+  date: string;
+  message: string;
+  streak: number;
+}
+
+const getCheckinData = (): CheckinData[] => {
+  try {
+    const raw = localStorage.getItem(CHECKIN_STORAGE);
+    return raw ? JSON.parse(raw) : [];
+  } catch { return []; }
+};
+
+const getTodayStr = () => new Date().toISOString().slice(0, 10);
+
+const DailyCheckin = ({ lang }: { lang: 'en' | 'et' }) => {
+  const [checkins, setCheckins] = React.useState(getCheckinData);
+  const [input, setInput] = React.useState('');
+  const [submitted, setSubmitted] = React.useState(false);
+
+  const today = getTodayStr();
+  const todayCheckin = checkins.find(c => c.date === today);
+  const streak = todayCheckin ? todayCheckin.streak : (checkins.length > 0 ? checkins[0].streak : 0);
+
+  React.useEffect(() => {
+    if (todayCheckin) setSubmitted(true);
+  }, [todayCheckin]);
+
+  const handleSubmit = () => {
+    if (!input.trim()) return;
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayStr = yesterday.toISOString().slice(0, 10);
+    const lastCheckin = checkins.length > 0 ? checkins[0] : null;
+    const newStreak = lastCheckin && lastCheckin.date === yesterdayStr ? lastCheckin.streak + 1 : 1;
+
+    const entry: CheckinData = { date: today, message: input.trim(), streak: newStreak };
+    const updated = [entry, ...checkins.filter(c => c.date !== today)].slice(0, 30);
+    setCheckins(updated);
+    localStorage.setItem(CHECKIN_STORAGE, JSON.stringify(updated));
+    setSubmitted(true);
+    setInput('');
+  };
+
+  if (submitted && todayCheckin) {
+    return (
+      <div className="card" style={{ borderColor: 'rgba(16,185,129,0.3)', background: 'rgba(16,185,129,0.05)', marginBottom: 24 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+          <Sparkles size={18} style={{ color: 'var(--emerald)' }} />
+          <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-primary)' }}>
+            {l('Today\'s Check-In', 'Tänane Sisseregistreerimine', lang)} ✓
+          </span>
+          <span className="badge badge-green" style={{ marginLeft: 'auto' }}>
+            🔥 {l('Day', 'Päev', lang)} {todayCheckin.streak}
+          </span>
+        </div>
+        <p style={{ fontSize: 13, color: 'var(--text-secondary)', fontStyle: 'italic', lineHeight: 1.6 }}>
+          "{todayCheckin.message}"
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="card" style={{ borderColor: 'rgba(200,167,126,0.25)', marginBottom: 24 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+        <Sparkles size={18} style={{ color: 'var(--teal-light)' }} />
+        <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-primary)' }}>
+          {l('Daily Check-In', 'Igapäevane Sisseregistreerimine', lang)}
+        </span>
+        {streak > 0 && (
+          <span className="badge badge-teal" style={{ marginLeft: 'auto' }}>
+            🔥 {streak} {l('day streak', 'päeva järjest', lang)}
+          </span>
+        )}
+      </div>
+      <p style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 12, lineHeight: 1.5 }}>
+        {l('What\'s one healthy choice you\'re making today?', 'Mis on üks tervislik valik, mille sa täna teed?', lang)}
+      </p>
+      <div style={{ display: 'flex', gap: 8 }}>
+        <input
+          type="text"
+          className="form-input"
+          style={{ flex: 1 }}
+          placeholder={l('e.g., "Taking a 30-min walk after lunch"', 'nt. "Lähen pärast lõunat 30 min jalutama"', lang)}
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={e => e.key === 'Enter' && handleSubmit()}
+        />
+        <button onClick={handleSubmit} className="btn btn-primary" style={{ flexShrink: 0 }}>
+          <Send size={14} />
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
@@ -71,6 +170,9 @@ export default function Dashboard({ lang }: Props) {
           </div>
         </div>
       </div>
+
+      {/* Daily Check-In */}
+      <DailyCheckin lang={lang} />
 
       {/* KPI cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 16, marginBottom: 24 }}>

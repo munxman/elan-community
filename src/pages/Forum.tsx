@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { forumPosts } from '../data/mockData';
-import { MessageSquare, Heart, Pin, Search, Plus, ThumbsUp, ChevronRight, Filter } from 'lucide-react';
+import { MessageSquare, Heart, Pin, Search, Plus, ThumbsUp, ChevronRight, Filter, Users, Send } from 'lucide-react';
 
 interface Props { lang: 'en' | 'et' }
 const l = (en: string, et: string, lang: 'en' | 'et') => lang === 'en' ? en : et;
@@ -163,6 +163,48 @@ export default function Forum({ lang }: Props) {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Accountability Buddy */}
+      <div className="card" style={{ marginTop: 20, borderColor: 'rgba(13,148,136,0.25)', background: 'rgba(13,148,136,0.05)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+          <Users size={18} style={{ color: 'var(--teal-light)' }} />
+          <h4 style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-primary)' }}>
+            {l('Your Accountability Buddy', 'Sinu Vastutuskaaslane', lang)}
+          </h4>
+        </div>
+        <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
+          <div style={{
+            width: 48, height: 48, borderRadius: '50%', flexShrink: 0,
+            background: 'linear-gradient(135deg, rgba(200,167,126,0.6), rgba(13,148,136,0.6))',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 14, fontWeight: 700, color: '#fff',
+          }}>
+            KM
+          </div>
+          <div style={{ flex: 1 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
+              <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-primary)' }}>Kadri M.</span>
+              <span className="badge badge-green" style={{ fontSize: 10 }}>
+                {l('Active today', 'Aktiivne täna', lang)}
+              </span>
+            </div>
+            <div style={{ fontSize: 11, color: 'var(--text-muted)', marginBottom: 10 }}>
+              {l('Matched since Feb 15, 2026 · Week 22 on programme', 'Sobitatud alates 15. veebr 2026 · Nädal 22 programmis', lang)}
+            </div>
+            <div style={{
+              background: 'var(--bg-primary)', border: '1px solid var(--border)', borderRadius: 10,
+              padding: '10px 14px', marginBottom: 12, fontSize: 13, color: 'var(--text-secondary)',
+              fontStyle: 'italic', lineHeight: 1.5,
+            }}>
+              "{l('Had a great training session this morning — pushed through even though I didn\'t feel like it. Small wins!', 'Hommikul oli hea treening — surusin läbi, kuigi ei tahtnud. Väikesed võidud!', lang)}"
+            </div>
+            <button className="btn btn-secondary" style={{ fontSize: 12 }}>
+              <Send size={12} />
+              {l('Send encouragement', 'Saada julgustust', lang)}
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Community guidelines */}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   LayoutDashboard, Activity, Brain, Shield, MessageSquare,
   ClipboardList, Menu, X, ChevronRight, Globe, LogOut,
-  Bell, Settings
+  Bell, Settings, Heart
 } from 'lucide-react';
 
 interface LayoutProps {
@@ -19,6 +19,7 @@ const navItems = [
   { id: 'readiness', icon: Brain, en: 'Readiness Score', et: 'Valmisoleku Skoor' },
   { id: 'prevention', icon: Shield, en: 'Regain Prevention', et: 'Kaalutõusu Ennetamine' },
   { id: 'forum', icon: MessageSquare, en: 'Community', et: 'Kogukond' },
+  { id: 'wellness', icon: Heart, en: 'Wellness Score', et: 'Heaolu Skoor' },
   { id: 'plan', icon: ClipboardList, en: 'My Plan', et: 'Minu Plaan' },
 ];
 
